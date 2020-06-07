@@ -1,24 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
+import images from "./images.json";
+import ImageContainer from "./components/ImageContainer";
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="container">
+        {
+          images.map(image => {
+            return (
+                <div key={image.id} className={"wrapper"}>
+                  <ImageContainer
+                    src={image.urls.regular}
+                    thumb={image.urls.thumb}
+                    height={image.height}
+                    width={image.width}
+                    alt={image.alt_description}
+                  />
+                </div>
+            )
+          })
+        }
+      </div>
     </div>
   );
 }
